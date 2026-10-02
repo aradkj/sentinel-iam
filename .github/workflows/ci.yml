@@ -1,10 +1,15 @@
-name: IAM Service CI Pipeline
+name: IAM Service CI/CD
 
 on:
   push:
     branches: ["main", "master", "develop"]
   pull_request:
     branches: ["main", "master", "develop"]
+
+env:
+  REGISTRY: ghcr.io
+  API_IMAGE: ghcr.io/aradkj/sentinel-iam-api
+  FRONTEND_IMAGE: ghcr.io/aradkj/sentinel-iam-frontend
 
 jobs:
   test-and-build:
@@ -86,8 +91,47 @@ jobs:
 
       - name: Build API Docker image
         run: |
-          docker build -t iam-service-api:ci .
+          docker build -t ${{ env.API_IMAGE }}:ci .
 
       - name: Build Frontend Docker image
         run: |
-          docker build -t iam-service-frontend:ci ./frontend
+          docker build -t ${{ env.FRONTEND_IMAGE }}:ci ./frontend
+
+  publish:
+    name: Publish Docker Images to GHCR
+    runs-on: ubuntu-latest
+    needs: test-and-build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push API image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ env.API_IMAGE }}:latest
+            ${{ env.API_IMAGE }}:${{ github.sha }}
+
+      - name: Build and push Frontend image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./frontend
+          push: true
+          tags: |
+            ${{ env.FRONTEND_IMAGE }}:latest
+            ${{ env.FRONTEND_IMAGE }}:${{ github.sha }}
