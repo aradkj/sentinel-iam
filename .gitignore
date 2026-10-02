@@ -1,0 +1,34 @@
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+
+# Cryptographic Keys (Never commit private/public PEM files)
+*.pem
+private.pem
+public.pem
+security/*.pem
+keys/*.pem
+
+# Python Bytecode & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+
+# Local Databases & Artifacts
+*.db
+*.sqlite
+*.sqlite3
+htmlcov/
+.coverage
+
+# Frontend / Node Tooling
+node_modules/
+dist/
+build/

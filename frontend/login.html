@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In — Enterprise IAM Platform</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <div class="auth-header">
+        <a href="/index.html"><div class="brand-icon">IAM</div></a>
+        <h1>Sign In to Your Account</h1>
+        <p>Authenticate with your enterprise credentials or OAuth2 provider</p>
+      </div>
+
+      <div id="auth-alert" class="alert"></div>
+
+      <form id="login-form">
+        <div class="form-group">
+          <label for="email">Email or Username</label>
+          <input
+            type="text"
+            id="email"
+            name="email"
+            placeholder="alice@example.com"
+            required
+            autocomplete="username"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="••••••••••••"
+            required
+            autocomplete="current-password"
+          />
+        </div>
+
+        <div class="checkbox-row">
+          <label class="checkbox-label">
+            <input type="checkbox" id="remember-session" checked />
+            <span>Remember session</span>
+          </label>
+          <a href="/register.html">Need an account?</a>
+        </div>
+
+        <button type="submit" id="login-submit-btn" class="btn btn-primary btn-block">
+          Sign In
+        </button>
+      </form>
+
+      <form id="otp-form" class="hidden">
+        <div class="form-group">
+          <label for="otp-code">6-Digit Authenticator Code (TOTP)</label>
+          <input
+            type="text"
+            id="otp-code"
+            name="otp-code"
+            placeholder="123456"
+            pattern="\d{6}"
+            maxlength="6"
+            required
+          />
+        </div>
+        <button type="submit" id="otp-submit-btn" class="btn btn-primary btn-block">
+          Verify &amp; Sign In
+        </button>
+      </form>
+
+      <div class="oauth-divider">Or continue with OAuth2</div>
+
+      <div class="oauth-buttons">
+        <button type="button" id="btn-google-oauth" class="btn btn-secondary">
+          Google Login
+        </button>
+        <button type="button" id="btn-github-oauth" class="btn btn-secondary">
+          GitHub Login
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+</body>
+</html>

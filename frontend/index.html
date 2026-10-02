@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enterprise IAM Platform — Identity &amp; Access Management</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="auth-wrapper">
+    <div class="auth-card auth-card-wide">
+      <div class="auth-header">
+        <div class="brand-icon">IAM</div>
+        <h1>Enterprise Identity &amp; Access Management</h1>
+        <p>Centralized OAuth2, RS256 Asymmetric JWT, TOTP 2FA, Device Session Control &amp; Granular RBAC</p>
+      </div>
+
+      <div class="stats-grid mb-md">
+        <div class="stat-card">
+          <span class="stat-label">Token Cryptography</span>
+          <span class="stat-value stat-value-md">RS256 (2048-bit)</span>
+          <span class="stat-meta">Asymmetric private/public key signing</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Account Defense</span>
+          <span class="stat-value stat-value-md">Lockout + 2FA</span>
+          <span class="stat-meta">5-attempt lockout (HTTP 423) &amp; PyOTP</span>
+        </div>
+      </div>
+
+      <div class="action-grid-2">
+        <a href="/login.html" class="btn btn-primary">Sign In to Console</a>
+        <a href="/register.html" class="btn btn-secondary">Create New Account</a>
+      </div>
+
+      <div class="landing-footer">
+        <span>Interactive OpenAPI: <a href="/docs" target="_blank">/docs</a></span>
+        <span>Public Key Endpoint: <a href="/api/v1/auth/public-key" target="_blank">/api/v1/auth/public-key</a></span>
+        <span>Health: <a href="/health" target="_blank">/health</a></span>
+      </div>
+    </div>
+  </div>
+  <script src="/js/api.js"></script>
+</body>
+</html>

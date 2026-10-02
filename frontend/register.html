@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account — Enterprise IAM Platform</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="auth-wrapper">
+    <div class="auth-card auth-card-medium">
+      <div class="auth-header">
+        <a href="/index.html"><div class="brand-icon">IAM</div></a>
+        <h1>Create Identity Account</h1>
+        <p>Register a new enterprise identity with bcrypt protection &amp; email verification</p>
+      </div>
+
+      <div id="auth-alert" class="alert"></div>
+
+      <form id="register-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" placeholder="Alice" required />
+          </div>
+          <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" placeholder="Anderson" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            placeholder="alice_anderson"
+            minlength="3"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="alice@example.com"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password (minimum 8 characters)</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Minimum 8 characters"
+            minlength="8"
+            required
+          />
+        </div>
+
+        <button type="submit" id="register-submit-btn" class="btn btn-primary btn-block">
+          Create Account
+        </button>
+      </form>
+
+      <p class="auth-footer-note">
+        Already registered? <a href="/login.html">Sign in to your account</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+</body>
+</html>

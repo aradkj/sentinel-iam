@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Console — Enterprise IAM Platform</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="app-shell" id="admin-view">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon">IAM</div>
+        <div class="brand-text">
+          <h1>Enterprise IAM</h1>
+          <span id="sidebar-role">ADMIN</span>
+        </div>
+      </div>
+
+      <ul class="nav-menu">
+        <li><a href="/dashboard.html" class="nav-link">Dashboard Overview</a></li>
+        <li><a href="/profile.html" class="nav-link">Security &amp; Profile</a></li>
+        <li><a href="/sessions.html" class="nav-link">Active Sessions</a></li>
+        <li id="nav-admin-item">
+          <a href="/admin.html" class="nav-link active">Admin Console</a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user" id="sidebar-username">
+          Loading admin...
+        </div>
+        <button class="btn btn-danger btn-sm btn-block" data-action="logout">
+          Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="page-header">
+        <div class="page-title">
+          <h2>Enterprise Administration Console</h2>
+          <p>Manage users, RBAC roles, granular permissions, and inspect security audit events</p>
+        </div>
+      </header>
+
+      <div id="admin-alert" class="alert"></div>
+
+      <div id="admin-content-area">
+        <div class="card">
+          <div class="card-header">
+            <h3>Registered Users</h3>
+            <span class="badge badge-info">RBAC Protected</span>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Status</th>
+                  <th>Role</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-users-tbody">
+                <tr>
+                  <td colspan="6" class="table-empty-cell">
+                    Loading users...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-header">
+              <h3>Create Role</h3>
+            </div>
+            <form id="create-role-form">
+              <div class="form-group">
+                <label for="role-name">Role Name</label>
+                <input type="text" id="role-name" placeholder="auditor" required />
+              </div>
+              <div class="form-group">
+                <label for="role-description">Description</label>
+                <input type="text" id="role-description" placeholder="Security &amp; financial auditor" />
+              </div>
+              <div class="form-group">
+                <label for="role-permissions">Initial Permissions (comma-separated)</label>
+                <input type="text" id="role-permissions" placeholder="report.view, user.read" />
+              </div>
+              <button type="submit" class="btn btn-primary">Create Role</button>
+            </form>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3>Assign Permissions to Role</h3>
+            </div>
+            <form id="assign-perm-form">
+              <div class="form-group">
+                <label for="perm-role-id">Target Role</label>
+                <select id="perm-role-id" required></select>
+              </div>
+              <div class="form-group">
+                <label for="perm-name">Permission Name</label>
+                <input type="text" id="perm-name" placeholder="billing.export" required />
+              </div>
+              <button type="submit" class="btn btn-primary">Assign Permission</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3>RBAC Roles &amp; Permissions Matrix</h3>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Role</th>
+                  <th>Description</th>
+                  <th>Permissions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-roles-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3>Security Audit Logs</h3>
+            <span class="badge badge-success">Live Event Stream</span>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Event Type</th>
+                  <th>User</th>
+                  <th>Description</th>
+                  <th>IP Address</th>
+                  <th>Timestamp</th>
+                </tr>
+              </thead>
+              <tbody id="admin-audit-tbody">
+                <tr>
+                  <td colspan="6" class="table-empty-cell">
+                    Loading security events...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+*.pem
+private.pem
+public.pem
+security/*.pem
+keys/*.pem
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+node_modules/
+.git/
+*.db
+*.sqlite3
